@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Keeper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="logo">
+                <i class="fas fa-book" style="color: #FF6B35;"></i>
+                <marquee behavior="" direction=""><h1>Note Nest</h1></marquee>
+            </div>
+            <p class="tagline">Smart and secure space for notes</p>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+
+            <button onclick="login()" class="login-btn">Sign In</button>
+            <button onclick="showRegisterModal()" class="register-btn">Create New Account</button>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app-screen" class="app-screen hidden">
+        <header class="header">
+            <div class="logo-section">
+                <i class="fas fa-book" style="color: #FF6B35;"></i>
+                <span>Note Nest</span>
+            </div>
+            <div class="time" id="current-time"></div>
+            <div class="user-info">
+                <span>Hello, <strong id="username-display"></strong></span>
+                <button onclick="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </header>
+
+        <div class="main">
+            <div class="top-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search notes..." onkeyup="filterNotes()">
+                </div>
+                <button onclick="showNewNoteModal()" class="new-note-btn">
+                    <i class="fas fa-plus"></i> New Note
+                </button>
+            </div>
+
+            <div id="notes-grid" class="notes-grid"></div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <button onclick="closeRegisterModal()" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="reg-username" placeholder="Choose username">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="reg-password" placeholder="Password">
+            </div>
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="reg-confirm-password" placeholder="Confirm password">
+            </div>
+            
+            <div class="modal-actions">
+                <button onclick="closeRegisterModal()" class="cancel-btn">Cancel</button>
+                <button onclick="register()" class="save-btn">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Note Modal -->
+    <div id="note-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">New Note</h2>
+                <button onclick="closeModal()" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <input type="text" id="note-title" class="note-title-input" placeholder="Note title">
+            <textarea id="note-content" class="note-content-input" placeholder="Write your note here..."></textarea>
+            
+            <div class="modal-actions">
+                <button onclick="closeModal()" class="cancel-btn">Cancel</button>
+                <button onclick="saveNote()" class="save-btn">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
